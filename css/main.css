@@ -306,6 +306,7 @@ header {
   background-color: var(--color-header);
   position: relative;
   z-index: 9;
+  transition: .4s;
 }
 
 header .inner {
@@ -322,6 +323,10 @@ header ul.menu>li {
   display: flex;
   position: relative;
   transition: .4s;
+}
+
+header ul.menu>li.menu-starter {
+  display: none;
 }
 
 header ul.menu>li>a {
@@ -531,6 +536,12 @@ header .search .autocompletes ul li a:hover {
   color: var(--color-link);
 }
 
+header .clone-menu {
+  display: none;
+}
+
+/* Search Animation */
+/* 스타일을 한 번에 지정 */
 header .search input,
 header .search .search-icon,
 header .search .autocompletes h3,
@@ -538,8 +549,6 @@ header .search .autocompletes li {
   transition: .6s;
   transform: translate(100px, 0);
 }
-
-
 
 header.searching ul.menu>li {
   transform: scale(.7);
@@ -560,6 +569,185 @@ header.searching .search .autocompletes li {
   transition-delay: .2s;
 }
 
+@media (max-width: 1000px) {
+  header .inner {
+    padding: 0 10px;
+  }
+}
+@media (max-width: 740px) {
+  header::before {
+    content: "";
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: var(--color-header);
+    transition: .4s;
+  }
+  header ul.menu > li {
+    display: none;
+  }
+  header ul.menu > li.menu-starter,
+  header ul.menu > li.apple-logo,
+  header ul.menu > li.basket-starter {
+    display: flex;
+  }
+  header ul.menu > li.menu-starter span {
+    display: block;
+    width: 15px;
+    height: 1px;
+    background-color: var(--color-white);
+    margin-bottom: 6px;
+    transition: .4s;
+  }
+  header ul.menu > li.menu-starter span:last-child {
+    margin-bottom: 0;
+  }
+  header .search-wrap {
+    padding: 0 20px 14px;
+    border-bottom: 1px solid var(--color-header);
+    box-sizing: border-box;
+    top: var(--header-height);
+  }
+  header .search {
+    max-width: 590px;
+  }
+  header .shadow {
+    display: none;
+  }
+  header .search .textfield {
+    border-radius: 10px;
+    background-color: #1D1D1D;
+    width: 100%;
+    transition: .2s;
+  }
+  header .search .search-closer {
+    display: none;
+  }
+  header .search .search-canceler {
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    color: var(--color-link);
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transition: .4s;
+    visibility: hidden;
+    opacity: 0;
+  }
+  header .search input,
+  header .search .search-icon,
+  header .search .autocompletes h3,
+  header .search .autocompletes li {
+  transform: translate(0, 0);
+  }
+  header .search .autocompletes {
+    top: 58px;
+    padding: 26px 0 20px;
+    background-color: transparent;
+    visibility: hidden;
+    opacity: 0;
+    transition: .3s;
+    transform: translate(0, -100px);
+  }
+  header .search .autocompletes ul li {
+    border-bottom: 1px solid var(--color-header);
+  }
+  header .search .autocompletes ul li:last-child {
+    border-bottom: none;
+  }
+  header .search .autocompletes ul li a {
+    padding: 16px 0 16px 16px;
+    color: var(--color-font-middlegray);
+  }
+  header .search .autocompletes ul li:hover a {
+    background-color: transparent;
+    color: var(--color-link);
+  }
+  header .clone-menu {
+    display: block;
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 103px;
+    left: 0;
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+    transition: .4s;
+    transform: translate(0, -50px);
+  }
+  header .clone-menu ul {
+    max-width: 590px;
+    margin: 4px auto;
+  }
+  header .clone-menu ul li {
+    border-bottom: 1px solid var(--color-header);
+  }
+  header .clone-menu ul li:last-child {
+    border-bottom: none;
+  }
+  header .clone-menu ul li a {
+    display: block;
+    padding: 16px 0;
+    font-size: 14px;
+    color: var(--color-font-middlegray);
+  }
+  header .clone-menu ul li:hover a {
+    color: var(--color-white);
+  }
+  header.menuing {
+    background-color: var(--color-black);
+  }
+  header.menuing::before {
+    content: "";
+    height: 100vh;
+    background-color: var(--color-black);
+  }
+  header.menuing ul.menu > li.basket-starter {
+    opacity: 0;
+    visibility: hidden;
+  }
+  header.menuing ul.menu > li.menu-starter span:first-child {
+    transform: translate(0, 3.5px) rotate(45deg);
+  }
+  header.menuing ul.menu > li.menu-starter span:last-child {
+    transform: translate(0, -3.5px) rotate(-45deg);
+  }
+  header.menuing .search-wrap {
+    visibility: visible;
+    opacity: 1;
+  }
+  header.menuing .clone-menu {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  header.menuing.searching--mobile {
+    transform: translate(0, -30px);
+  }
+  header.menuing.searching--mobile .search .textfield {
+    width: calc(100% - 55px);
+  }
+  header.menuing.searching--mobile .search .autocompletes {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+  header.menuing.searching--mobile .search .search-canceler {
+    visibility: visible;
+    opacity: 1;
+  }
+  header.menuing.searching--mobile .clone-menu {
+    visibility: hidden;
+    opacity: 0;
+    transform: translate(0, 100px);
+  }
+}
 
 /* Navigation */
 nav {
