@@ -115,6 +115,31 @@ window.addEventListener('resize', function() {
   }
 });
 
+// 네비게이션 메뉴 모바일 버전
+const navEl = document.querySelector('nav');
+const navMenuTogglerEl = navEl.querySelector('.menu-toggler');
+const navMenuShadowEl = navEl.querySelector('.shadow');
+
+navMenuTogglerEl.addEventListener('click', function () {
+  if(navEl.classList.contains('menuing')) {
+    hideNavMenu();
+  } else {
+    showNavMenu();
+  }
+});
+navEl.addEventListener('click', function (event) {
+  event.stopPropagation();
+});
+navMenuShadowEl.addEventListener('click', hideNavMenu);
+window.addEventListener('click', hideNavMenu);
+
+function showNavMenu() {
+  navEl.classList.add('menuing');
+}
+function hideNavMenu() {
+  navEl.classList.remove('menuing');
+}
+
 // 요소의 가시성 관찰
 const io = new IntersectionObserver(function (entries) {
   entries.forEach(function (entry) {
