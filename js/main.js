@@ -222,6 +222,7 @@ navigations.forEach(function (nav) {
   mapEl.innerHTML = /* html */ `
   <h3>
     <span class="text">${nav.title}</span>
+    <span class="icon">+</span>
   </h3>
   <ul>
     ${mapList}
@@ -229,6 +230,15 @@ navigations.forEach(function (nav) {
   `;
 
   navigationsEl.append(mapEl);
+});
+
+// 모바일 버전 네비게이션 표시 애니메이션
+const mapEls = document.querySelectorAll('footer .navigations .map');
+mapEls.forEach(function (el) {
+  const h3El = el.querySelector('h3');
+  h3El.addEventListener('click', function () {
+    el.classList.toggle('active'); //add와 remove 역할을 동시에 함
+  });
 });
 
 // 연도 표시
