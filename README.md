@@ -1,4 +1,4 @@
-#iPad
+# iPad
 [Demo](https://i-pad-blond.vercel.app/)
 
 ## JS로 각 프레임 위치 계산하기
